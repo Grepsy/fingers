@@ -1,18 +1,18 @@
 function fastblur(ctx, passes) {
     var i, x, y;
-    var d = 3;
-    ctx.globalAlpha = 0.125;
+    var d = 2;
+    ctx.globalAlpha = 1 / 8;
     for (i = 1; i <= passes; i++) {
       for (y = -d; y <= d; y +=d) {
         for (x = -d; x <= d; x += d) {
-            // Place eight versions of the image over the original
-            // image, each with 1/8th of full opacity.  The images are
-            // placed around the original image like a square filter.
-            // This gives the impression the image has been blurred,
-            // but it's done at native browser speed, thus making it
-            // much faster than writing a proper blur filter in
-            // Javascript.
-            ctx.drawImage(ctx.canvas, x, y);
+          // Place eight versions of the image over the original
+          // image, each with 1/8th of full opacity.  The images are
+          // placed around the original image like a square filter.
+          // This gives the impression the image has been blurred,
+          // but it's done at native browser speed, thus making it
+          // much faster than writing a proper blur filter in
+          // Javascript.
+          ctx.drawImage(ctx.canvas, x, y);
         }
       }
     }
